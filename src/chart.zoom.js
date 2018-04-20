@@ -378,7 +378,9 @@ var zoomPlugin = {
 					var chartDistance = chartArea.right - chartArea.left;
 					var zoom = 1 + ((chartDistance - dragDistance) / chartDistance );
 
-					if (dragDistance > 0) {
+					const minDragThreshold = 6; // Heavily tried and tested figure ;)
+
+					if (dragDistance > minDragThreshold) {
 						doZoom(chartInstance, zoom, {
 							x: (dragDistance / 2) + startX,
 							y: (yAxis.bottom - yAxis.top) / 2,
@@ -520,7 +522,7 @@ var zoomPlugin = {
 			var rectWidth = endX - startX;
 
 
-			ctx.fillStyle = 'rgba(225,225,225,0.3)';
+			ctx.fillStyle = 'rgba(180,180,180,0.5)';
 			ctx.lineWidth = 5;
 			ctx.fillRect(startX, yAxis.top, rectWidth, yAxis.bottom - yAxis.top);
 		}
